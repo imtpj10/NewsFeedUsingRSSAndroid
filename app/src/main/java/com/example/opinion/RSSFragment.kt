@@ -24,13 +24,13 @@ private const val ARG_PARAM2 = "param2"
  * Use the [RSSFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RSSFragment : Fragment() {
+class RSSFragment(private val url: String): Fragment() {
     // TODO: Customize parameters
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
 
-    val RSS_FEED_LINK = "https://www.thehindu.com/news/feeder/default.rss"
+    val RSS_FEED_LINK = url
         //"https://www.relsellglobal.in/feed/";
 
     var adapter: MyItemRecyclerViewAdapter? = null
