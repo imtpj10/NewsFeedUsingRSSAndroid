@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.IOException
@@ -25,13 +27,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class RSSFragment(private val url: String): Fragment() {
+
+
     // TODO: Customize parameters
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
 
     val RSS_FEED_LINK = url
-        //"https://www.relsellglobal.in/feed/";
 
     var adapter: MyItemRecyclerViewAdapter? = null
     var rssItems = ArrayList<RssItem>()
@@ -112,7 +115,9 @@ class RSSFragment(private val url: String): Fragment() {
 
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: RssItem?)
+        fun onListFragmentInteraction(item: RssItem?) {
+
+        }
     }
 
 

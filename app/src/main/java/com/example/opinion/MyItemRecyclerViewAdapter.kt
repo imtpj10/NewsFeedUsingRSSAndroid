@@ -1,11 +1,14 @@
 package com.example.opinion
 
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide.init
@@ -25,10 +28,16 @@ class MyItemRecyclerViewAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            //val item = v.tag as DummyItem
+
+            val item = v.tag as RssItem
+            val link = item.link
+            //   val b = item.getLink()
             // Notify the active callbacks interface (the activity, if the fragment is attached to
             // one) that an item has been selected.
-            //mListener?.onListFragmentInteraction(item)
+            // mListener?.onListFragmentInteraction(item)
+            var intent = Intent(context, WebViewActivity::class.java)
+            intent.putExtra("html_link", link)
+            context?.startActivity(intent)
         }
     }
 
@@ -41,7 +50,7 @@ class MyItemRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
         holder.titleTV?.text = item.title
-        holder.pubDateTV?.text = item.pubDate
+        holder.pubDateTV?.text = item.pubDate.take(22)
         var link = getFeaturedImageLink(item.link)
         if (link != null) {
             context?.let {
@@ -69,46 +78,26 @@ class MyItemRecyclerViewAdapter(
 
     }
 
+    private fun getFeaturedImageLink(link: String): String? {
 
-    private fun getFeaturedImageLink( link: String): String? {
-
-        var result: String? = null
+        var src: String? = null
 
         val stringBuilder = StringBuilder()
-       // try {
-//            val conn:Connection = Jsoup.connect(htmlText).userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
-//            val doc: Document = conn.get()
-//            val imgs: Elements = doc.select("img")
-//            for (img in imgs) {
-//                var src = img.attr("src")
-//                result = src
-            val src : String
-        if(link[8] == 't') {
-            src= "https://i.postimg.cc/tJVmSG7Y/download-2.jpg"
-
-        } else if(link[8] =='i') {
-            src ="https://i.postimg.cc/pdLv0yvr/download.png"
-        }else {
-            if(link[12]=='t') {
-                src = "https://i.postimg.cc/BbsMgPWw/The-Hindu-Logo-3.png"
-            }
-            else if( link[12] =='l') {
-
-                src = "https://i.postimg.cc/y6MVVVmp/default-621.jpg"
-            }else {
-                src = "https://i.postimg.cc/tgW3MRz0/download-2.png"
-            }
-
+        //val src : String
+        val trimLink = link.take(20)
+        if (trimLink == "https://timesofindia" || trimLink == "http://blogs.timesof") {
+            src = "https://i.postimg.cc/tJVmSG7Y/download-2.jpg"
+        } else if (trimLink == "https://indianexpres") {
+            src = "https://i.postimg.cc/pdLv0yvr/download.png"
+        } else if (trimLink == "https://www.thehindu") {
+            src = "https://i.postimg.cc/BbsMgPWw/The-Hindu-Logo-3.png"
+        } else if (trimLink == "https://www.livemint") {
+            src = "https://i.postimg.cc/y6MVVVmp/default-621.jpg"
+        } else if (trimLink == "https://www.economis") {
+            src = "https://i.postimg.cc/tgW3MRz0/download-2.png"
         }
-        result = src
-
-      //  }
-
-       // } catch (e: IOException) {
-
-     //   }
-        return result
-
+        //  result = src
+        return src
     }
 
 

@@ -7,15 +7,8 @@
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile"
             android:title="Profile"/>
-        <item
-            android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_messages"
-            android:title="Messages"/>
-        <item
-            android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_friends"
-            android:title="Friends"/>
     </group>
+
 
     <item android:title="Select Newspaper">
         <menu>
@@ -23,10 +16,10 @@
                 android:id="@+id/theHindu"
                 android:icon="@drawable/ic_newspaper"
                 android:title="THE HINDU"/>
-            <item
-                android:id="@+id/theTimesOfIndia"
-                android:icon="@drawable/ic_newspaper"
-                android:title="THE TIMES OF INDIA"/>
+<!--            <item-->
+<!--                android:id="@+id/theTimesOfIndia"-->
+<!--                android:icon="@drawable/ic_newspaper"-->
+<!--                android:title="THE TIMES OF INDIA"/>-->
             <item
                 android:id="@+id/theIndianExpress"
                 android:icon="@drawable/ic_newspaper"
@@ -41,8 +34,25 @@
                 android:icon="@drawable/ic_newspaper"
                 android:title="LIVEMINT"/>
         </menu>
-    </item>
 
+    </item>
+    <item android:title="Editorial">
+        <menu>
+            <item
+                android:id="@+id/theHinduEditorial"
+                android:icon="@drawable/ic_newspaper"
+                android:title="THE HINDU"/>
+            <item
+                android:id="@+id/theTimesOfIndiaEditorial"
+                android:icon="@drawable/ic_newspaper"
+                android:title="THE TIMES OF INDIA"/>
+            <item
+                android:id="@+id/theIndianExpressEditorial"
+                android:icon="@drawable/ic_newspaper"
+                android:title="THE INDIAN EXPRESS"/>
+        </menu>
+
+    </item>
     <item android:title="Account Settings">
         <menu>
             <item
